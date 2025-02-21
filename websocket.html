@@ -11,7 +11,7 @@
     <p id="response"></p>
 
     <script>
-        const socket = new WebSocket('wss://e966-106-51-127-104.ngrok-free.app/ws/');
+        const socket = new WebSocket('wss://localhost:5000/ws/');
 
         socket.onopen = () => {
             console.log("Connected to WebSocket server");
