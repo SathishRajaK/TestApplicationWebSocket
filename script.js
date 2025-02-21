@@ -12,7 +12,7 @@ function InitializeWebSocket() {
     }
 
     try {
-        ws = new WebSocket('ws://localhost:8085/broadcast');
+        ws = new WebSocket('wss://956a-106-51-127-104.ngrok-free.app/broadcast');
     }
     catch (ex) {
 
