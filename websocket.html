@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Example</title>
+</head>
+<body>
+    <h1>WebSocket Communication</h1>
+    <button onclick="sendMessage()">Send Message to C#</button>
+    <p id="response"></p>
+
+    <script>
+        const socket = new WebSocket('wss://e966-106-51-127-104.ngrok-free.app/ws/');
+
+        socket.onopen = () => {
+            console.log("Connected to WebSocket server");
+        };
+
+        socket.onmessage = (event) => {
+            document.getElementById('response').innerText = "Server says: " + event.data;
+        };
+
+        function sendMessage() {
+            const message = 'Hello from HTML!';
+            socket.send(message);
+        }
+    </script>
+</body>
+</html>
