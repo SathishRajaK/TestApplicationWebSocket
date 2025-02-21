@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Example</title>
+    <title>WebSocket Client</title>
 </head>
 <body>
-    <h1>WebSocket Communication</h1>
-    <button onclick="sendMessage()">Send Message to C#</button>
+    <h1>WebSocket Client</h1>
+    <input type="text" id="message" placeholder="Enter message">
+    <button onclick="sendMessage()">Send</button>
     <p id="response"></p>
 
     <script>
-        const socket = new WebSocket('wss://localhost:5000/ws/');
+        // Replace with your WebSocket server URL
+        let socket = new WebSocket("wss://d0b6-106-51-127-104.ngrok-free.app");
 
-        socket.onopen = () => {
+        socket.onopen = function () {
             console.log("Connected to WebSocket server");
         };
 
-        socket.onmessage = (event) => {
-            document.getElementById('response').innerText = "Server says: " + event.data;
+        function sendMessage() {
+            let message = document.getElementById("message").value;
+            socket.send(message);
+            console.log("Sent:", message);
+        }
+
+        socket.onmessage = function (event) {
+            document.getElementById("response").innerText = "Response: " + event.data;
         };
 
-        function sendMessage() {
-            const message = 'Hello from HTML!';
-            socket.send(message);
-        }
+        socket.onerror = function (error) {
+            console.error("WebSocket Error:", error);
+        };
     </script>
 </body>
 </html>
